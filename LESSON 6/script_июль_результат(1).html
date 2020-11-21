@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title> Бот "Болтушкин" 2.0 </title>
+    <link rel="" href="" type="">
+  </head>
+  <body>
+    <div id="work-place">
+
+    </div>
+  </body>
+  <script>
+    let name = prompt("Привет! Как тебя зовут?");
+    let year = prompt(name + ", а в каком году ты родился?", 2000);
+    let q = confirm("Это значит тебе " + (2020 - year) + " лет?");
+    if (q == true) {
+      alert("Я прав, я моледец! По математике у меня 5-ка!");
+    } else {
+      alert("Я ошибся... скорее всего тебе тогда " + (2019 - year) + " лет.");
+    }
+    let qgame = confirm("Давай поиграем с тобой в игру?");
+    if (qgame == true) {
+      createGame();
+      alert("Правила игры. Я бросаю два кубика. Если ты угадаешь два выпадающих числа получаешь 10 очков. Если только одно значение ты получаешь 5 очков. Если не угадал ни одного значения, у тебя -5 очков.")
+    } else {
+      alert("Какой же ты скучный, а я так хотел поиграть...");
+    }
+
+    function createGame() {
+      let canvas = document.getElementById("work-place");
+      canvas.innerHTML += "<h4 id='points-place'> У вас 0 очков! </h4>";
+      canvas.innerHTML += "<h1 id='cube-place'> X X </h1>";
+      canvas.innerHTML += "<h4> Введите 1-ое число </h4> <input type='text' id='answer-1-cube'>";
+      canvas.innerHTML += "<h4> Введите 2-ое число </h4> <input type='text' id='answer-2-cube'>";
+      canvas.innerHTML += "<button id='submit' onclick='check()'> Проверить </button>";
+      return p = 0;
+    }
+
+    function check() {
+      let ans1 = getRandomInRange(1,6);
+      let ans2 = getRandomInRange(1,6);
+      let cube1 = document.getElementById("answer-1-cube").value;
+      let cube2 = document.getElementById("answer-2-cube").value;
+      let cubePlace = document.getElementById("cube-place");
+      cubePlace.innerHTML = ans1 + " " + ans2;
+      if (((cube1 == ans1) & (cube2 == ans2)) || ((cube1 == ans2) & (cube2 == ans1))) {
+        p = p + 10;
+        alert("ЭТО НЕВОЗМОЖНО! ТЫ УГАДАЛ ДВА ЗНАЧЕНИЯ! +10 очков!");
+      } else {
+        if ((cube1 == ans1) || (cube1 == ans2) || (cube2 == ans1) || (cube2 == ans2)) {
+          p = p + 5;
+          alert("Ты угадал! ТЫ ВОЛШЕБНИК! +5 очков!")
+        } else {
+          p = p - 5;
+          alert("Ты не угадал! Я победил! -5 очков!")
+        }
+      }
+      let pointsPlace = document.getElementById("points-place");
+      pointsPlace.innerHTML = "У тебя " + p + " очков!";
+    }
+
+
+    function getRandomInRange(min,max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+  </script>
+</html>

@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title> Бот "Болтушкин" 2.0 </title>
+    <link rel="" href="" type="">
+  </head>
+  <body>
+
+  </body>
+  <script>
+    let p = -123;
+    let name = prompt("Привет! Как тебя зовут?");
+    let year = prompt(name + ", а в каком году ты родился?", 2000);
+    let q = confirm("Это значит тебе " + (2020 - year) + " лет?");
+    if (q == true) {
+      alert("Я прав, я моледец! По математике у меня 5-ка!");
+    } else {
+      alert("Я ошибся... скорее всего тебе тогда " + (2019 - year) + " лет.");
+    }
+    let qgame = confirm("Давай поиграем с тобой в игру?");
+    while (qgame == true) {
+      if (p == -123) {
+        alert("Правила игры. Я бросаю два кубика. Если ты угадаешь два выпадающих числа получаешь 10 очков. Если только одно значение ты получаешь 5 очков. Если не угадал ни одного значения, у тебя -5 очков.")
+        p = 0;
+      }
+      let ans1 = getRandomInRange(1,6);
+      let cube1 = prompt("Я бросаю первый кубик! Какое число на нем выпало?")
+      let ans2 = getRandomInRange(1,6);
+      let cube2 = prompt("Я бросаю второй кубик! Какое число на нем выпало?")
+      alert("Вы загадали: " + cube1 + " " + cube2 + "На кубиках выпало: " + ans1 + " " + ans2);
+      if (((cube1 == ans1) & (cube2 == ans2)) || ((cube1 == ans2) & (cube2 == ans1))) {
+        p = p + 10;
+        alert("ЭТО НЕВОЗМОЖНО! ТЫ УГАДАЛ ДВА ЗНАЧЕНИЯ! +10 очков!");
+      } else {
+        if ((cube1 == ans1) || (cube1 == ans2) || (cube2 == ans1) || (cube2 == ans2)) {
+          p = p + 5;
+          alert("Ты угадал! ТЫ ВОЛШЕБНИК! +5 очков!")
+        } else {
+          p = p - 5;
+          alert("Ты не угадал! Я победил! -5 очков!")
+        }
+      }
+      alert("У тебя " + p + " очков!");
+      qgame = confirm(name + " , поиграем еще?")
+    }
+    if (qgame != true) {
+      alert("Какой же ты скучный, а я так хотел поиграть...");
+    } else {
+
+    }
+    function getRandomInRange(min,max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+  </script>
+</html>

@@ -1,0 +1,204 @@
+<!doctype html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title> Zafar's_Project </title>
+    <link rel="" href="" type="">
+    <style>
+      .first-face {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        }
+
+        .second-face {
+        display: flex;
+        justify-content: space-between;
+        }
+
+        .second-face .pip:nth-of-type(2) {
+        align-self: flex-end;
+        }
+
+        .third-face {
+        display: flex;
+        justify-content: space-between;
+        }
+
+        .third-face .pip:nth-of-type(2) {
+        align-self: center;
+        }
+
+        .third-face .pip:nth-of-type(3) {
+        align-self: flex-end;
+        }
+
+        .fourth-face, .sixth-face {
+        display: flex;
+        justify-content: space-between;
+        }
+
+        .fourth-face .column, .sixth-face .column {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        }
+
+        .fifth-face {
+        display: flex;
+        justify-content: space-between;
+        }
+
+        .fifth-face .column {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        }
+
+        .fifth-face .column:nth-of-type(2) {
+        justify-content: center;
+        }
+
+        /* OTHER STYLES */
+
+        * {
+        box-sizing: border-box;
+        }
+
+        html, body {
+        height: 100%;
+        }
+
+        body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        vertical-align: center;
+        flex-wrap: wrap;
+        align-content: center;
+        font-family: 'Open Sans', sans-serif;
+
+        background: linear-gradient(top, #222, #333);
+        }
+
+        [class$="face"] {
+        margin: 16px;
+        padding: 4px;
+
+        background-color: #e7e7e7;
+        width: 104px;
+        height: 104px;
+        object-fit: contain;
+
+        box-shadow:
+          inset 0 5px white,
+          inset 0 -5px #bbb,
+          inset 5px 0 #d7d7d7,
+          inset -5px 0 #d7d7d7;
+
+        border-radius: 10%;
+        }
+
+      .pip {
+        display: block;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        margin: 4px;
+
+        background-color: #333;
+        box-shadow: inset 0 3px #111, inset 0 -3px #555;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="work-place">
+
+    </div>
+  </body>
+  <script>
+    let name = prompt("Привет! Как тебя зовут? (Hello! What's your name?)");
+    let year = prompt(name + ", а в каком году ты родился?                                                                               (What year were you born?) ", 2000 );
+    let q = confirm("Это значит тебе (It means to you)  " + (2020 - year) + " лет?   (year?)");
+    if (q == true) {
+      alert("Я прав, я моледец! По математике у меня 5-ка!                                           (I'm right, I'm a loyalist! In math, I have 5!)");
+    } else {
+      alert("Я ошибся... скорее всего тебе тогда (I was wrong ... most likely you then) " + (2019 - year) + " лет. (year.)");
+    }
+    let freedom = prompt("Что ты делаешь в свободное время?                                                      (What are you doing in your spare time?)");{
+      alert("Круто! А я в свободное время иду гулять!                                                       (Cool! And I go for a walk in my free time!)")
+    }
+
+    let qgame = confirm("Давай поиграем с тобой в игру?                                                               (Let's play a game with you?)");
+    if (qgame == true) {
+      createGame();
+      alert("Правила игры. Я бросаю два кубика. Если ты угадаешь два выпадающих числа получаешь 10 очков. Если только одно значение ты получаешь 5 очков. Если не угадал ни одного значения, у тебя -5 очков.                                                                  (Rules of the game. I roll two dice. If you guess the two dropped numbers you get 10 points. If there is only one value, you get 5 points. If you have not guessed any value, you have -5 points.)")
+    } else {
+      alert("Какой же ты скучный, а я так хотел поиграть...                                  (How boring you are, and I so wanted to play ...)");
+    }
+
+    function createGame() {
+      let canvas = document.getElementById("work-place");
+      canvas.innerHTML += "<h4 id='points-place'> У вас 0 очков! </h4>";
+      canvas.innerHTML += "<h4 id='points2-place'> (You have 0 points!) </h4>";
+      canvas.innerHTML += "<h1 id='cube-place' style='display: inline-flex;'> X X </h1>";
+      canvas.innerHTML += "<h4> Введите 1-ое число  (Enter the 1st number) </h4> <input type='text' id='answer-1-cube'>";
+      canvas.innerHTML += "<h4> Введите 2-ое число  (Enter the 2nd number) </h4> <input type='text' id='answer-2-cube'><br/><br/>";
+      canvas.innerHTML += "<button id='submit' onclick='check()'>Проверить (Check)</button>";
+      return p = 0;
+    }
+
+    function check() {
+      let ans1 = getRandomInRange(1,6);
+      let ans2 = getRandomInRange(1,6);
+      let cube1 = document.getElementById("answer-1-cube").value;
+      let cube2 = document.getElementById("answer-2-cube").value;
+      let cubePlace = document.getElementById("cube-place");
+      cubePlace.innerHTML = selectImage(ans1);
+      cubePlace.innerHTML += selectImage(ans2);
+      if (((cube1 == ans1) & (cube2 == ans2)) || ((cube1 == ans2) & (cube2 == ans1))) {
+        p = p + 10;
+        alert("ЭТО НЕВОЗМОЖНО! ТЫ УГАДАЛ ДВА ЗНАЧЕНИЯ! +10 очков!                                                  (IT'S IMPOSSIBLE! YOU GUESSED TWO VALUES! +10 points!)");
+      } else {
+        if ((cube1 == ans1) || (cube1 == ans2) || (cube2 == ans1) || (cube2 == ans2)) {
+          p = p + 5;
+          alert("Ты угадал! ТЫ ВОЛШЕБНИК! +5 очков!                                                     (You guessed! YOU ARE A WIZARD! +5 points!)")
+        } else {
+          p = p - 5;
+          alert("Ты не угадал! Я победил! -5 очков!                                                   (You did not guess right! I won! -5 points!)")
+        }
+      }
+      let pointsPlace = document.getElementById("points-place");
+      pointsPlace.innerHTML = "У тебя " + p + " очков!";
+
+      let points2Place = document.getElementById("points2-place");
+      points2Place.innerHTML = "(You have " + p + " points!)";
+    }
+
+    function getRandomInRange(min,max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function selectImage(num) {
+      if (num == 1) {
+        return image = "<div class='first-face'><span class='pip'></span></div>";
+      }
+      if (num == 2) {
+        return image = "<div class='second-face'><span class='pip'></span><span class='pip'></span></div>";
+      }
+      if (num == 3) {
+        return image = "<div class='third-face'><span class='pip'></span><span class='pip'></span><span class='pip'></span></div>";
+      }
+      if (num == 4) {
+        return image = "<div class='fourth-face'><div class='column'><span class='pip'></span><span class='pip'></span></div><div class='column'><span class='pip'></span><span class='pip'></span></div></div>";
+      }
+      if (num == 5) {
+        return image = "<div class='fifth-face'><div class='column'><span class='pip'></span><span class='pip'></span></div><div class='column'><span class='pip'></span></div><div class='column'><span class='pip'></span><span class='pip'></span></div></div>";
+      }
+      if (num == 6) {
+        return image = "<div class='sixth-face'><div class='column'><span class='pip'></span><span class='pip'></span><span class='pip'></span></div><div class='column'><span class='pip'></span><span class='pip'></span><span class='pip'></span></div></div>";
+      }
+    }
+  </script>
+</html>
